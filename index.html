@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Для новостного сайта</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  <style>
+    canvas {
+      max-width: 600px;
+      margin: 20px auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h2>Количество новостей в час (Bubble Chart)</h2>
+  <canvas id="bubbleChart"></canvas>
+
+  <h2>Тематика новостей на сайте (Pie Chart)</h2>
+  <canvas id="pieChart"></canvas>
+
+  <h2>Интерес читателей по темам (Doughnut Chart)</h2>
+  <canvas id="doughnutChart"></canvas>
+
+  <script>
+
+    new Chart(document.getElementById('bubbleChart'), {
+      type: 'bubble',
+      data:{
+        label: "F",
+        datasets: [{
+          label: 'Количество новостей по дням недели',
+          data: [
+            { x: 1, y: 10, r: 30,  },
+            { x: 2, y: 14, r: 40,  },
+            { x: 3, y: 18, r: 50,  },
+            { x: 4, y: 9, r: 25,  },
+            { x: 5, y: 15, r: 45,  },
+            { x: 6, y: 20, r: 60,  },
+            { x: 7, y: 12, r: 35,  },
+            { x: 1, y: 8, r: 20,  },
+            { x: 3, y: 17, r: 50,  },
+            { x: 5, y: 13, r: 40,  },
+          ],
+          backgroundColor: 'rgba(54, 162, 235, 0.5)',
+          borderColor: 'rgb(54, 162, 235)',
+          borderWidth: 1
+      }]},
+      options: {
+        plugins: {
+          tooltip: { enabled: true }
+        },
+        animation: {
+          duration: 1500
+        },
+        scales:{
+          yAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Часы'
+            }
+          }],
+          xAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Дни недели'
+            }
+          }]
+        }
+      }
+    });
+
+    // Pie Chart
+    new Chart(document.getElementById('pieChart'), {
+      type: 'pie',
+      data: {
+        labels: ['Космос', 'Технологии', 'Медицина', 'Наука в мире', 'Образование'],
+        datasets: [{
+          data: [40, 25, 15, 10, 10],
+          backgroundColor: [
+            '#0077b6', '#00b4d8', '#90e0ef', '#48cae4', '#f1f1f1'
+          ]
+        }]
+      },
+      options: {
+        plugins: {
+          tooltip: { enabled: true }
+        },
+        animation: {
+          animateRotate: true,
+          duration: 1500
+        }
+      }
+    });
+
+    // Doughnut Chart
+    new Chart(document.getElementById('doughnutChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Марс', 'Чёрные дыры', 'Спутники', 'Ракеты'],
+        datasets: [{
+          data: [50, 20, 15, 15],
+          backgroundColor: [
+          '#0077b6', '#00b4d8', '#90e0ef', '#48cae4'
+          ]
+        }]
+      },
+      options: {
+        plugins: {
+          tooltip: { enabled: true }
+        },
+        animation: {
+          animateScale: true,
+          duration: 1500
+        }
+      }
+    });
+  </script>
+</body>
+</html>
